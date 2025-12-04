@@ -36,7 +36,8 @@ Voice-Enabled-Task-Tracker/
 │   │   ├── components/         # UI components
 │   │   │   ├── ui/            # shadcn/ui base components
 │   │   │   └── tasks/         # Task-specific components
-│   │   ├── contexts/          # React Context for state
+│   │   ├── contexts/          # React Context for UI state
+│   │   ├── hooks/             # React Query hooks
 │   │   ├── services/          # API service layer
 │   │   ├── types/             # TypeScript definitions
 │   │   ├── utils/             # Voice parsing & utilities
@@ -60,6 +61,7 @@ Voice-Enabled-Task-Tracker/
 - **React 18.3** - UI library with hooks
 - **TypeScript 5.x** - Type safety
 - **Vite 7.x** - Fast build tool and dev server
+- **React Query** - Server state management with caching
 - **shadcn/ui** - High-quality component library
 - **Tailwind CSS v3** - Utility-first CSS
 - **@dnd-kit** - Drag and drop functionality
@@ -246,12 +248,10 @@ http://localhost:3000/api
 | Method | Endpoint | Description |
 |--------|----------|-------------|
 | GET | `/health` | Health check |
-| GET | `/tasks` | Get all tasks (with filters) |
-| GET | `/tasks/:id` | Get single task |
+| GET | `/tasks` | Get all tasks |
 | POST | `/tasks` | Create new task |
 | PUT | `/tasks/:id` | Update task |
 | DELETE | `/tasks/:id` | Delete task |
-| GET | `/tasks/stats` | Get statistics |
 
 ### Example: Create Task
 
@@ -317,9 +317,9 @@ curl -X POST http://localhost:3000/api/tasks \
 ## 🎯 Key Design Decisions
 
 ### State Management
-- **React Context API** instead of Redux for simplicity
-- Async operations with loading/error states
-- Optimistic updates for better UX
+- **React Query** for server state management with automatic caching
+- **React Context API** for UI state (filters, view mode)
+- Automatic refetching and cache invalidation
 
 ### Voice Parsing
 - **Client-side NLP** with regex patterns for instant feedback
