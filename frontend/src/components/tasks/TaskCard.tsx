@@ -30,12 +30,12 @@ const priorityLabels: Record<TaskPriority, string> = {
 export const TaskCard: React.FC<TaskCardProps> = ({ task, onEdit, onDelete }) => {
   return (
     <Card className="group hover:shadow-md transition-shadow cursor-pointer">
-      <CardHeader className="pb-3">
+      <CardHeader className="pb-3 pt-3 px-3 md:pt-4 md:px-6">
         <div className="flex items-start justify-between gap-2">
-          <CardTitle className="text-base font-semibold line-clamp-2">
+          <CardTitle className="text-sm md:text-base font-semibold line-clamp-2 flex-1">
             {task.title}
           </CardTitle>
-          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <div className="flex gap-1 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity flex-shrink-0">
             <Button
               variant="ghost"
               size="icon"
@@ -61,9 +61,9 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onEdit, onDelete }) =>
           </div>
         </div>
       </CardHeader>
-      <CardContent className="space-y-3">
+      <CardContent className="space-y-2 md:space-y-3 pb-3 px-3 md:pb-6 md:px-6">
         {task.description && (
-          <p className="text-sm text-muted-foreground line-clamp-2">
+          <p className="text-xs md:text-sm text-muted-foreground line-clamp-2">
             {task.description}
           </p>
         )}
@@ -80,7 +80,7 @@ export const TaskCard: React.FC<TaskCardProps> = ({ task, onEdit, onDelete }) =>
           {task.dueDate && (
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <Calendar className="h-3.5 w-3.5" />
-              <span>{format(new Date(task.dueDate), 'MMM d, yyyy')}</span>
+              <span className="text-xs">{format(new Date(task.dueDate), 'MMM d, yyyy')}</span>
             </div>
           )}
         </div>

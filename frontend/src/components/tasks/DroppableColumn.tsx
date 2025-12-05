@@ -28,13 +28,13 @@ export const DroppableColumn: React.FC<DroppableColumnProps> = ({
     <div
       ref={setNodeRef}
       className={cn(
-        'flex flex-col bg-muted/30 rounded-lg p-4 min-h-[500px] transition-colors',
+        'flex flex-col bg-muted/30 rounded-lg p-3 md:p-4 min-h-[300px] md:min-h-[500px] transition-colors',
         isOver && 'bg-muted/50 ring-2 ring-primary/50'
       )}
     >
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="font-semibold text-lg">{title}</h3>
-        <span className="text-sm text-muted-foreground bg-background px-2 py-1 rounded">
+      <div className="flex items-center justify-between mb-3 md:mb-4">
+        <h3 className="font-semibold text-base md:text-lg">{title}</h3>
+        <span className="text-xs md:text-sm text-muted-foreground bg-background px-2 py-1 rounded">
           {tasks.length}
         </span>
       </div>
@@ -44,7 +44,7 @@ export const DroppableColumn: React.FC<DroppableColumnProps> = ({
         items={tasks.map((t) => t.id)}
         strategy={verticalListSortingStrategy}
       >
-        <div className="flex-1 space-y-3 overflow-y-auto">
+        <div className="flex-1 space-y-2 md:space-y-3 overflow-y-auto">
           {tasks.map((task) => (
             <SortableTaskCard
               key={task.id}
@@ -54,7 +54,7 @@ export const DroppableColumn: React.FC<DroppableColumnProps> = ({
             />
           ))}
           {tasks.length === 0 && (
-            <div className="flex items-center justify-center h-32 text-sm text-muted-foreground border-2 border-dashed rounded-lg">
+            <div className="flex items-center justify-center h-24 md:h-32 text-xs md:text-sm text-muted-foreground border-2 border-dashed rounded-lg">
               Drop tasks here
             </div>
           )}

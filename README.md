@@ -166,6 +166,8 @@ Frontend will run at `http://localhost:5173`
 
 Navigate to `http://localhost:5173` in your browser!
 
+**Note:** The application starts with an empty database. No seed data is required - simply create your first task using the UI or voice input to get started.
+
 ## 📖 Usage Guide
 
 ### Creating Tasks Manually
@@ -269,7 +271,7 @@ Content-Type: application/json
 }
 ```
 
-**Response:**
+**Success Response (201):**
 ```json
 {
   "success": true,
@@ -283,6 +285,14 @@ Content-Type: application/json
     "createdAt": "2025-12-03T10:00:00.000Z",
     "updatedAt": "2025-12-03T10:00:00.000Z"
   }
+}
+```
+
+**Error Response (400):**
+```json
+{
+  "success": false,
+  "error": "Title is required"
 }
 ```
 
@@ -456,6 +466,38 @@ This project demonstrates:
 - Natural language processing
 - Drag and drop interactions
 - Modern UI/UX patterns
+
+## 📝 Assumptions & Limitations
+
+### Assumptions
+- Users have access to a modern browser (Chrome, Edge, or Safari) for voice input
+- Microphone permissions will be granted by the user
+- Tasks are personal/team-based with < 1000 tasks per user (client-side filtering)
+- Internet connection is available for MongoDB Atlas
+- English language is used for voice input
+
+### Current Limitations
+- Voice input only supports English language
+- No user authentication - single-user application
+- Client-side filtering may slow down with very large datasets (1000+ tasks)
+- No offline support - requires internet connection
+- Voice parsing uses regex patterns (not AI-based NLP)
+
+## 🤖 AI Tools Usage
+
+This project was built with assistance from **Claude AI (Anthropic)** for:
+
+- **Boilerplate code generation** - Initial project structure, component scaffolding
+- **Problem-solving** - Debugging React Query issues, TypeScript type errors
+- **Code explanations** - Understanding generics, Web Speech API, React hooks
+- **Best practices** - Structuring the API layer, error handling patterns
+- **Documentation** - Writing comprehensive README sections
+
+**Key learnings:**
+- AI tools significantly speed up boilerplate and setup tasks
+- Still need to understand the code to debug and customize effectively
+- Helpful for exploring library APIs (React Query, @dnd-kit) quickly
+- Best used as a pair programmer, not a replacement for learning fundamentals
 
 ## 🔮 Future Enhancements
 

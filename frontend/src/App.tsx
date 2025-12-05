@@ -63,34 +63,34 @@ function App() {
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-10">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold">Task Tracker</h1>
-              <p className="text-sm text-muted-foreground">
+        <div className="container mx-auto px-4 py-3 md:py-4">
+          <div className="flex items-center justify-between gap-4">
+            <div className="min-w-0">
+              <h1 className="text-xl md:text-2xl font-bold truncate">Task Tracker</h1>
+              <p className="text-xs md:text-sm text-muted-foreground hidden sm:block">
                 Manage your tasks with voice or manual input
               </p>
             </div>
 
-            <div className="flex items-center gap-2">
-              <div className="flex items-center gap-1 border rounded-lg p-1">
+            <div className="flex items-center gap-1.5 md:gap-2 flex-shrink-0">
+              <div className="flex items-center gap-0.5 md:gap-1 border rounded-lg p-0.5 md:p-1">
                 <Button
                   variant={viewMode === 'board' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('board')}
-                  className="gap-2"
+                  className="gap-1 md:gap-2 h-8 px-2 md:px-3"
                 >
-                  <LayoutGrid className="h-4 w-4" />
-                  Board
+                  <LayoutGrid className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                  <span className="hidden sm:inline">Board</span>
                 </Button>
                 <Button
                   variant={viewMode === 'list' ? 'default' : 'ghost'}
                   size="sm"
                   onClick={() => setViewMode('list')}
-                  className="gap-2"
+                  className="gap-1 md:gap-2 h-8 px-2 md:px-3"
                 >
-                  <List className="h-4 w-4" />
-                  List
+                  <List className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                  <span className="hidden sm:inline">List</span>
                 </Button>
               </div>
 
@@ -98,35 +98,35 @@ function App() {
                 variant="outline"
                 size="sm"
                 onClick={() => setIsVoiceInputOpen(true)}
-                className="gap-2"
+                className="gap-1 md:gap-2 h-8 px-2 md:px-3"
               >
-                <Mic className="h-4 w-4" />
-                Voice Input
+                <Mic className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                <span className="hidden md:inline">Voice</span>
               </Button>
 
               <Button
                 size="sm"
                 onClick={() => setIsTaskFormOpen(true)}
-                className="gap-2"
+                className="gap-1 md:gap-2 h-8 px-2 md:px-3"
               >
-                <Plus className="h-4 w-4" />
-                Add Task
+                <Plus className="h-3.5 w-3.5 md:h-4 md:w-4" />
+                <span className="hidden md:inline">Add</span>
               </Button>
             </div>
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-6">
+      <main className="container mx-auto px-4 py-4 md:py-6">
         {(errorMessage || error) && (
-          <div className="mb-4 p-4 bg-destructive/10 text-destructive rounded-lg border border-destructive/20 flex items-center justify-between">
-            <span>{errorMessage || error}</span>
+          <div className="mb-4 p-3 md:p-4 bg-destructive/10 text-destructive rounded-lg border border-destructive/20 flex items-center justify-between text-sm">
+            <span className="flex-1 pr-2">{errorMessage || error}</span>
             {error && (
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={clearError}
-                className="h-auto py-1 px-2"
+                className="h-auto py-1 px-2 flex-shrink-0"
               >
                 Dismiss
               </Button>
@@ -134,14 +134,14 @@ function App() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-          <aside className="lg:col-span-1">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 md:gap-6">
+          <aside className="lg:col-span-1 space-y-4">
             <TaskFilters />
-            <div className="mt-4 p-4 bg-muted/30 rounded-lg">
-              <h3 className="text-sm font-semibold mb-2">Statistics</h3>
-              <div className="space-y-2 text-sm">
+            <div className="p-4 bg-muted/30 rounded-lg">
+              <h3 className="text-sm font-semibold mb-3">Statistics</h3>
+              <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">Total Tasks</span>
+                  <span className="text-muted-foreground">Total</span>
                   <span className="font-medium">{tasks.length}</span>
                 </div>
                 <div className="flex justify-between">
@@ -151,7 +151,7 @@ function App() {
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">In Progress</span>
+                  <span className="text-muted-foreground">Progress</span>
                   <span className="font-medium">
                     {tasks.filter((t) => t.status === 'in_progress').length}
                   </span>
